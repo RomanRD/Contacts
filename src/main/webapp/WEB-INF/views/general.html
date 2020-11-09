@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="baseHeader(title,links)">
+    <title th:replace="${title}">Contacts</title>
+
+    <!--   Отображать страницу в масштабе 100%   -->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Нормализация стилей -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+    <!-- Собственный стиль  -->
+    <th:block th:replace="${links}" />
+
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/img/1200px-Google_Contacts_icon.svg.png}">
+</head>
+<body>
+    <header th:fragment="header" class="head_container">
+        <h1><a href="/">Contacts</a></h1>
+        <form th:action="@{/logout}" th:method="POST">
+            <button type="submit" class="header_button"> <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        </form>
+    </header>
+</body>
+</html>

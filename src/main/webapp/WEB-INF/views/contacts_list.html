@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="general.html :: baseHeader(~{::title},~{::link})">
+    <meta charset="utf-8">
+    <title>Contacts</title>
+
+    <!-- Собственный стиль-->
+    <link rel="stylesheet" th:href="@{/resources/css/contacts_list.css}">
+
+</head>
+
+
+<body>
+
+<header th:replace="general.html :: header"></header>
+
+<section class="main_section">
+    <div class="content_container">
+
+        <div class="user_contact_container">
+
+                <div th:each="con : ${contacts}" id="user_contact" class="user_contact">
+                    <div class="user_image_container">
+                        <img sec:authorize="!hasRole('ADMIN')" th:with="photo = ${con.photo}"
+                             th:src="${photo!=null ? '/img/'+ photo : '/resources/image/no-image-icon.png'}" alt="">
+
+                        <a sec:authorize="hasRole('ADMIN')" th:href="'/contact/' + ${con.id} + '/edit'">
+                            <img th:with="photo = ${con.photo}"
+                                 th:src="${photo!=null ? '/img/'+ photo : '/resources/image/no-image-icon.png'}" alt=""></a>
+                    </div>
+
+                    <div class="user_information">
+                        <p sec:authorize="!hasRole('ADMIN')" class="user_name">Roman</p>
+
+                        <a sec:authorize="hasRole('ADMIN')" th:href="'/contact/' + ${con.id} + '/edit'">
+                            <p class="user_name" th:text="${con.name}">Roman</p></a>
+
+                        <p th:text="${con.phone}">+38(095)-712-32-23</p>
+                    </div>
+                </div>
+
+        </div>
+<!--        <form sec:authorize="hasRole('ADMIN')">-->
+<!--            <button type="button" class="button btn_add_new" formaction="/contacts_list.html#popup">ADD NEW</button>-->
+<!--        </form>-->
+        <a sec:authorize="hasRole('ADMIN')" class="button btn_add_new" href="#popup">ADD NEW</a>
+
+    </div>
+</section>
+
+<section>
+    <div id="popup" class="popup">
+        <a href="#" class="popup_area" onclick="history.back()"></a>
+        <div class="popup_body">
+            <div class="popup_content">
+                <div class="popup_text">
+
+                    <div class="user_image_container flex_img">
+                        <img th:src="@{resources/image/no-image-icon.png}" id="img" alt="">
+                    </div>
+
+                    <form th:action="@{/contact/add}" method="POST" th:object="${contact}" enctype="multipart/form-data">
+                        <div class="input_container">
+                            <input type="text" th:field="*{name}" maxlength="70" placeholder="Enter user name">
+                            <input type="tel" th:field="*{phone}" onkeyup="this.value = this.value.replace(/[^\d+]/g,'');" placeholder="Enter user phone number">
+                            <input type="file" name="img" accept="image/*" onchange="readUrl(this)">
+                        </div>
+
+                        <button type="submit" class="button btn1">SAVE</button>
+                        <button onclick="history.back()" type="button" class="button btn2">CANCEL</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://use.fontawesome.com/f121ae5672.js"></script>
+<script src="/resources/js/script.js"></script>
+</body>
+
+</html>

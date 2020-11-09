@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="general.html :: baseHeader(~{::title},~{::link})">
+    <title>Sign in</title>
+
+    <!-- Собственный стиль-->
+    <link rel="stylesheet" th:href="@{/resources/css/login.css}">
+
+</head>
+
+<body>
+
+<section class="main_section">
+    <div class="content_container">
+
+        <div class="head_container">
+            <h1>Contacts</h1>
+            <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+        </div>
+
+        <form th:action = "@{/login}" th:method = "POST">
+            <div class="input_container">
+                <input type="text" name="username" placeholder="Enter username" autocomplete="on" autofocus>
+                <input type="password" name="password" placeholder="Enter password">
+            </div>
+
+            <button type="submit" class="button">SIGN IN</button>
+        </form>
+    </div>
+
+</section>
+
+<script src="https://use.fontawesome.com/f121ae5672.js"></script>
+</body>
+
+</html>

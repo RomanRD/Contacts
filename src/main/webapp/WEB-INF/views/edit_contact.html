@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="general.html :: baseHeader(~{::title},~{::link})">
+
+    <title th:text="${contact.name}">Edit contact</title>
+
+    <!-- Собственный стиль-->
+    <link rel="stylesheet" th:href="@{/resources/css/edit_contact.css}">
+</head>
+
+<body>
+
+<section class="main_section">
+    <div class="content_container">
+
+        <header th:replace="general.html :: header"></header>
+
+        <div class="user_contact">
+            <div class="user_image_container">
+                <img id="img" th:with="photo = ${contact.photo}"
+                     th:src="${photo!=null ? '/img/' + photo : 'resources/image/no-image-icon.png'}" alt="">
+            </div>
+
+            <div class="user_information">
+                <form th:action="'/contact/' + ${contact.id} + '/edit'" th:method="post" th:object="${contact}" enctype="multipart/form-data">
+
+                    <div class="input_container">
+                        <input type="text" th:field="*{name}" maxlength="70" placeholder="Enter contact name">
+                        <input type="tel" th:field="*{phone}" onkeyup="this.value = this.value.replace(/[^\d+]/g,'');" placeholder="Enter the number">
+                        <input type="file" name="img" accept="image/*" onchange="readUrl(this)">
+                    </div>
+
+                    <button type="submit" class="button btn1">SAVE</button>
+                </form>
+
+                <form th:action="'/contact/' + ${contact.id} + '/delete'" th:method="DELETE">
+                   <button type="submit" class="button btn2">DELETE</button>
+                </form>
+                <button onclick="history.back()" type="button" class="button btn3">CANCEL</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script src="https://use.fontawesome.com/f121ae5672.js"></script>
+<script src="/resources/js/script.js"></script>
+</body>
+</html>

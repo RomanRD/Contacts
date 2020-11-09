@@ -1,0 +1,81 @@
+html {
+    background-image: linear-gradient(to left top, #232937, #212838, #1f283a, #1d273b, #1b263c, #1c273c, #1e283d, #1f293d, #242c3d, #292f3d, #2e323d, #32353d);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.head_container{
+    display: flex;
+    justify-content: center;
+    color: #b8a87d;
+    margin: 0 0 70px 0;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.head_container i{
+    margin: auto 0px auto 20px;
+    display: block;
+    font-size: 40px;
+}
+
+.main_section {
+    width: 500px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #151b27;
+    text-align: center;
+}
+
+.content_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input {
+    font-size: 18px;
+    border: 2px solid #e9e9e9;
+    padding: 12px 18px;
+    box-sizing: border-box;
+    outline-color: #49576f36;
+    background-color: #b4ab93;
+    border-radius: 3px;
+    color: #4b4b4b;
+    width: 380px;
+    display: block;
+    margin: 40px auto;
+}
+
+.input::-webkit-input-placeholder {
+    color: #bab8b8;
+    font-style: italic;
+}
+
+/*                                                       */
+.button {
+    outline: none;
+    height: 40px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid #b8a87d;
+    color: #b8a87d;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.button:hover {
+    color: white;
+    background: #b8a87d;
+}
+
+.button:active {
+    letter-spacing: 4px;
+}
