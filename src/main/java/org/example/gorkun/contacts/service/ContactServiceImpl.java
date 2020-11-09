@@ -62,17 +62,18 @@ public class ContactServiceImpl implements ContactService{
     }
 
     private boolean deletePhoto(Contact contact){
-        File uploadDir = new File(uploadPath + "/" + contact.getPhoto());
-        return uploadDir.delete();
+        if(contact.getPhoto()!=null){
+            File uploadDir = new File(uploadPath + "/" + contact.getPhoto());
+            return uploadDir.delete();
+        }
+        return true;
     }
 
     @Override
     @Transactional
     public void deleteContact(long id) {
         Contact contact = contactRepository.findById(id).get();
-        if(contact.getPhoto()!=null){
-            deletePhoto(contact);
-        }
+        deletePhoto(contact);
         contactRepository.delete(contact);
     }
 

@@ -1,8 +1,5 @@
-const btn = document.querySelector("#user_contact");
-
-btn.addEventListener("click", clickFunc);
-
-function clickFunc(){
+function clickFunc(id){
+    const btn = document.querySelector("#user_contact" + id);
     btn.classList.toggle("active_block");
 };
 

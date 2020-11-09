@@ -27,7 +27,6 @@ public class AdminController {
         }
 
         contactService.addContact(contact, photo);
-
         return "redirect:/";
     }
 

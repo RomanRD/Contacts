@@ -19,11 +19,11 @@
         <div class="user_contact">
             <div class="user_image_container">
                 <img id="img" th:with="photo = ${contact.photo}"
-                     th:src="${photo!=null ? '/img/' + photo : 'resources/image/no-image-icon.png'}" alt="">
+                     th:src="${photo!=null ? '/img/' + photo : '/resources/image/no-image-icon.png'}" alt="">
             </div>
 
             <div class="user_information">
-                <form th:action="'/contact/' + ${contact.id} + '/edit'" th:method="post" th:object="${contact}" enctype="multipart/form-data">
+                <form th:action="'/contact/' + ${contact.id} + '/edit'" th:method="POST" th:object="${contact}" enctype="multipart/form-data">
 
                     <div class="input_container">
                         <input type="text" th:field="*{name}" maxlength="70" placeholder="Enter contact name">
